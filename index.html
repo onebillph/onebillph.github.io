@@ -1,70 +1,129 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>OneBill PH — bill tracking that never touches your money</title>
-<meta name="description" content="OneBill PH finds the bills sitting in your email, shows them in one list, and reminds you before they are due. Everything stays on your phone.">
+<title>OneBill PH — All your Philippine bills in one app</title>
+<meta name="description" content="OneBill PH finds Meralco, Maynilad, PLDT, Globe, credit card and condo bills in your inbox, shows them on one dashboard and reminds you before they're due. Everything stays on your phone.">
+<link rel="canonical" href="https://onebillph.com/">
+<meta property="og:title" content="OneBill PH — All your Philippine bills in one app">
+<meta property="og:description" content="Automatic bill tracking for the Philippines. Reads your bill emails on your phone, reminds you before due dates, never touches your money.">
+<meta property="og:url" content="https://onebillph.com/">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232563eb'/%3E%3Cstop offset='1' stop-color='%2314b8a6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Ctext x='32' y='47' font-family='Arial,Helvetica,sans-serif' font-size='42' font-weight='700' fill='white' text-anchor='middle'%3E1%3C/text%3E%3C/svg%3E">
 <style>
-  body{max-width:760px;margin:0 auto;padding:32px 20px 80px;font:16px/1.65 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#1f2937;}
-  h1{font-size:30px;margin:0 0 6px;letter-spacing:-.01em;}
-  .tag{color:#6b7280;font-size:17px;margin:0 0 28px;}
-  h2{font-size:19px;margin:36px 0 8px;color:#111827;}
-  .box{background:#f0f7ff;border:1px solid #cfe3fb;border-radius:10px;padding:14px 16px;margin:22px 0;}
-  ul{padding-left:22px;} li{margin:6px 0;}
-  a{color:#1d4ed8;}
-  .brand{display:flex;align-items:center;gap:14px;margin-bottom:10px;}
-  .mark{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,#1d4ed8,#0ea5a4);color:#fff;font:700 27px/52px -apple-system,Segoe UI,Roboto,sans-serif;text-align:center;flex:none;}
-  footer{margin-top:52px;padding-top:16px;border-top:1px solid #e5e7eb;color:#6b7280;font-size:14px;}
-  footer a{color:#6b7280;}
+  :root{--blue:#2563eb;--teal:#14b8a6;--ink:#0f172a;--muted:#475569;--line:#e2e8f0;--bg:#f8fafc;}
+  *{box-sizing:border-box}
+  body{margin:0;font:16px/1.65 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:#fff;}
+  a{color:var(--blue)}
+  .wrap{max-width:960px;margin:0 auto;padding:0 20px}
+  header{border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;color:var(--ink);text-decoration:none}
+  .logo{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,var(--blue),var(--teal));color:#fff;display:grid;place-items:center;font-weight:800;font-size:22px}
+  .nav a.link{color:var(--muted);text-decoration:none;margin-left:22px;font-size:15px}
+  .nav a.link:hover{color:var(--ink)}
+  .hero{padding:64px 0 40px;text-align:center}
+  .hero h1{font-size:40px;line-height:1.15;margin:0 0 14px;letter-spacing:-.5px}
+  .hero p.lead{font-size:19px;color:var(--muted);max-width:640px;margin:0 auto 28px}
+  .badge{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff;border-radius:10px;padding:12px 20px;text-decoration:none;font-weight:600}
+  .badge small{display:block;font-weight:400;font-size:11px;opacity:.8;line-height:1.1;text-align:left}
+  .badge span{display:block;font-size:17px;line-height:1.1;text-align:left}
+  .note{font-size:13px;color:var(--muted);margin-top:12px}
+  .billers{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:34px auto 0;max-width:760px}
+  .billers span{border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:13px;color:var(--muted);background:var(--bg)}
+  section{padding:48px 0;border-top:1px solid var(--line)}
+  h2{font-size:26px;margin:0 0 8px}
+  .sub{color:var(--muted);margin:0 0 26px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+  .card{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card .n{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--teal));color:#fff;display:grid;place-items:center;font-weight:700;font-size:15px;margin-bottom:12px}
+  .card h3{margin:0 0 6px;font-size:17px}
+  .card p{margin:0;color:var(--muted);font-size:15px}
+  .promise{background:linear-gradient(135deg,#eff6ff,#f0fdfa);border:1px solid #cfe3fb;border-radius:16px;padding:26px}
+  .promise ul{margin:10px 0 0;padding-left:20px}
+  .promise li{margin:6px 0}
+  .faq details{border-bottom:1px solid var(--line);padding:14px 0}
+  .faq summary{cursor:pointer;font-weight:600;list-style:none}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq p{color:var(--muted);margin:10px 0 0}
+  footer{padding:32px 0 48px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+  footer .row{display:flex;flex-wrap:wrap;gap:16px 26px;justify-content:space-between;align-items:center}
+  @media (max-width:600px){.hero h1{font-size:31px}.hero{padding:44px 0 30px}}
 </style>
 </head>
 <body>
 
-<div class="brand">
-  <div class="mark">1</div>
-  <div>
-    <h1>OneBill PH</h1>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="/"><span class="logo">1</span> OneBill PH</a>
+    <nav>
+      <a class="link" href="#how">How it works</a>
+      <a class="link" href="#privacy">Privacy</a>
+      <a class="link" href="/privacy.html">Privacy Policy</a>
+    </nav>
   </div>
-</div>
-<p class="tag">Bill tracking that never touches your money.</p>
+</header>
 
-<p>Your bills already arrive in your email. OneBill PH reads them there, puts them in one list with the amount and the due date, and reminds you before each one is due — so nothing gets missed under a pile of unread mail.</p>
+<main class="wrap">
 
-<div class="box">
-  <strong>Nothing leaves your phone.</strong> There is no server, no account to create, and no copy of your data anywhere but your own device. There are no ads, and the app never moves your money.
-</div>
+  <div class="hero">
+    <h1>All your Philippine bills,<br>in one app.</h1>
+    <p class="lead">OneBill PH finds the bills already sitting in your inbox — Meralco, Maynilad, PLDT, Globe, credit cards, condo dues — puts them on one dashboard, and reminds you before they're due. Everything happens on your phone.</p>
+    <a class="badge" href="https://play.google.com/store/apps/details?id=ph.onebill.app">
+      <svg width="26" height="28" viewBox="0 0 24 26" aria-hidden="true"><path fill="#00d7fe" d="M1 1.5v23l12-11.5z"/><path fill="#ffce00" d="M13 13l5-4.8 5.3 3c1 .6 1 1.9 0 2.5L18 17.6z"/><path fill="#ff3a44" d="M1 24.5 13 13l5 4.6L3.4 25.4c-1 .6-2.4-.1-2.4-.9z"/><path fill="#00f076" d="M1 1.5c0-.8 1.3-1.5 2.4-.9L18 8.2 13 13z"/></svg>
+      <div><small>GET IT ON</small><span>Google Play</span></div>
+    </a>
+    <div class="note">Free · Android 8.0 and up · No account needed</div>
 
-<h2>What it does</h2>
-<ul>
-  <li>Finds bill emails in your Gmail or Yahoo inbox and reads the biller, amount, due date and reference number.</li>
-  <li>Opens PDF and image statements — including password-protected ones — to pull out the amount.</li>
-  <li>Reminds you three days before a due date, and again on the day.</li>
-  <li>Lets you snap a photo of a paper bill, or add one by hand.</li>
-  <li>Tracks what you have already paid.</li>
-  <li>When you are ready to pay, it opens GCash, Maya or your bank app — you pay there, the way you always have.</li>
-</ul>
+    <div class="billers">
+      <span>Meralco</span><span>Maynilad</span><span>Manila Water</span><span>PLDT</span><span>Globe</span><span>Smart</span><span>Converge</span><span>DITO</span><span>Sky</span><span>Cignal</span><span>Sun Life</span><span>BDO</span><span>BPI</span><span>UnionBank</span><span>Metrobank</span><span>EastWest</span><span>DMCI Homes</span><span>+ any biller you add</span>
+    </div>
+  </div>
 
-<h2>How your inboxes are connected</h2>
-<ul>
-  <li><strong>Gmail</strong> — read-only access through Google sign-in. The app never sends, deletes or changes an email.</li>
-  <li><strong>Yahoo Mail</strong> — read-only, using an app password you generate yourself and can revoke at any time.</li>
-</ul>
-<p>You can disconnect an inbox from inside the app, or revoke access from your Google or Yahoo account settings. Uninstalling the app deletes everything it knows.</p>
+  <section id="how">
+    <h2>How it works</h2>
+    <p class="sub">Three steps, about two minutes, then it runs by itself.</p>
+    <div class="grid">
+      <div class="card"><div class="n">1</div><h3>Connect your inbox</h3><p>Sign in with Google for Gmail, or use a Yahoo app password. You can connect several inboxes. OneBill PH asks for read-only access — it can never send, delete or change an email.</p></div>
+      <div class="card"><div class="n">2</div><h3>Your bills appear</h3><p>The app looks only at emails from billers you'd expect — utilities, telcos, banks, your condo — and reads the amount, due date and account number, including from PDF statements and images. Promos and receipts are skipped.</p></div>
+      <div class="card"><div class="n">3</div><h3>Get reminded, then pay your way</h3><p>A reminder arrives 3 days before and on the due date, and when a new bill lands. When you're ready to pay, the app opens GCash, Maya or your bank app — you pay there as usual. OneBill PH never handles money.</p></div>
+    </div>
+  </section>
 
-<h2>Privacy</h2>
-<p>The full policy explains exactly what the app touches and where it goes: <a href="https://onebillph.github.io/onebill-privacy/">OneBill PH Privacy Policy</a>.</p>
-<p>OneBill PH's use of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+  <section id="privacy">
+    <h2>What OneBill PH does with your Gmail</h2>
+    <p class="sub">This is the part people rightly ask about, so here it is plainly.</p>
+    <div class="promise">
+      <b>Your email is read on your phone, and only there.</b> OneBill PH has no server. Nothing you see in the app is uploaded, copied or stored anywhere else.
+      <ul>
+        <li>The app requests Gmail <b>read-only</b> access and uses it for one purpose: finding bill emails and reading the amount, due date and account number.</li>
+        <li>It searches only for messages from known billers (and any billers you add yourself). Your other mail is not scanned.</li>
+        <li>Statements you open, passwords for protected PDFs, and your sign-in token are kept in Android's encrypted storage on the device. Cloud backup is switched off.</li>
+        <li>No ads, no tracking, no selling or sharing of data. No human ever reads your email.</li>
+        <li>Disconnect any time in the app, or from <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>. Uninstalling erases everything.</li>
+      </ul>
+      <p style="margin:16px 0 0">Full details: <a href="/privacy.html"><b>Privacy Policy</b></a>. OneBill PH complies with the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including its Limited Use requirements.</p>
+    </div>
+  </section>
 
-<h2>Availability</h2>
-<p>OneBill PH is an Android app built for households in the Philippines. It is currently in review for release on Google Play.</p>
+  <section class="faq">
+    <h2>Common questions</h2>
+    <details><summary>Does OneBill PH pay my bills?</summary><p>No. It tracks and reminds. When you tap Pay, it hands you off to GCash, Maya or your bank app and you complete the payment there. It never sees your card or wallet.</p></details>
+    <details><summary>Which email providers work?</summary><p>Gmail (via Google sign-in) and Yahoo Mail (via an app password you create in your Yahoo account). Bills that land elsewhere can be forwarded to a connected inbox, snapped from paper with the camera, or added by hand.</p></details>
+    <details><summary>My condo or a small biller isn't listed.</summary><p>Add it yourself: paste the sender's email address and a phrase from the bill's subject line. The app then picks up those bills like any other.</p></details>
+    <details><summary>Where is my data stored?</summary><p>Only in the app's private storage on your phone. There is no OneBill PH account and no cloud copy. Uninstall the app and it's gone.</p></details>
+    <details><summary>How much does it cost?</summary><p>OneBill PH is free to download and use. Optional extras may be offered later; the core bill tracking stays free.</p></details>
+  </section>
 
-<h2>Contact</h2>
-<p>Questions, bug reports or complaints: <a href="mailto:onebillph@gmail.com">onebillph@gmail.com</a>.</p>
+</main>
 
 <footer>
-  OneBill PH is developed and published by OneBillph, Philippines.<br>
-  <a href="https://onebillph.github.io/onebill-privacy/">Privacy Policy</a>
+  <div class="wrap row">
+    <div>© 2026 OneBill PH, Philippines · <a href="mailto:onebillph@gmail.com">onebillph@gmail.com</a></div>
+    <div><a href="/privacy.html">Privacy Policy</a></div>
+  </div>
+  <div class="wrap" style="margin-top:14px">Bill tracking that never touches your money. Google Play is a trademark of Google LLC.</div>
 </footer>
 
 </body>
