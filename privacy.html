@@ -25,7 +25,7 @@
 <div class="top"><a href="/"><span class="logo">1</span> OneBill PH</a></div>
 
 <h1>Privacy Policy — OneBill PH</h1>
-<div class="date">Last updated: 6 September 2026 · This policy lives at <a href="https://onebillph.com/privacy.html">onebillph.com/privacy.html</a></div>
+<div class="date">Last updated: 7 September 2026 · This policy lives at <a href="https://onebillph.com/privacy.html">onebillph.com/privacy.html</a></div>
 
 <p>OneBill PH helps you keep track of the bills that arrive in your email, and reminds you before they are due. This policy explains exactly what the app touches and where it goes.</p>
 
@@ -54,6 +54,52 @@
   <li>Payments you mark as done, and any bills you add by hand.</li>
 </ul>
 <p>Android's automatic cloud backup is switched off for this app (<code>allowBackup="false"</code>), so this data is not copied to your Google Drive backup either.</p>
+
+<h2>How we protect your data</h2>
+<p>Security procedures are in place to protect the confidentiality, integrity and availability of all
+Google user data and other sensitive data the app handles. Specifically:</p>
+<ul>
+  <li><b>Encryption in transit.</b> Every connection the app makes is encrypted. Gmail is accessed over
+  HTTPS/TLS using the official Google Gmail API; Yahoo Mail is accessed over IMAP with SSL/TLS on port 993.
+  The app refuses unencrypted connections.</li>
+  <li><b>Encryption at rest.</b> Your Google OAuth access and refresh tokens, your Yahoo app password, and
+  any PDF statement passwords you save are stored using <b>Android's encrypted storage</b>
+  (Jetpack Security <code>EncryptedSharedPreferences</code>, AES-256-GCM), with the encryption keys held in the
+  Android Keystore and, on supported devices, protected by the phone's hardware-backed security module.
+  Keys never leave the device and are not extractable by the app or by us.</li>
+  <li><b>Device sandbox isolation.</b> All bill data is written to the app's private internal storage, which
+  Android isolates from every other app on the phone. It is further protected by the device's own screen lock,
+  PIN, pattern or biometric.</li>
+  <li><b>No server, therefore no server-side exposure.</b> OneBill PH operates no backend, no database and no
+  cloud storage. Because Google user data is never transmitted off your device, there is no server that could
+  be breached, no administrator account that could be compromised, and no copy of your email anywhere outside
+  your own phone.</li>
+  <li><b>No cloud backup.</b> Android's automatic backup is disabled for this app
+  (<code>allowBackup="false"</code>), so this data is never copied to Google Drive or any other backup service.</li>
+  <li><b>Least privilege.</b> The app requests only the read-only Gmail scope
+  (<code>gmail.readonly</code>) — the narrowest permission that allows a bill to be found and read.
+  It is technically incapable of sending, modifying, labelling or deleting any message.</li>
+  <li><b>No human access.</b> No employee, contractor or third party can read your email or bill data,
+  because that data never reaches any system we control.</li>
+  <li><b>No AI/ML training.</b> Google user data is never used to develop, improve or train any generalised
+  or non-personalised artificial intelligence or machine learning model.</li>
+</ul>
+
+<h2>Data retention and deletion</h2>
+<ul>
+  <li>Bill data is retained on your device only for as long as you keep the app installed, so that the
+  dashboard and reminders keep working.</li>
+  <li><b>Disconnecting an inbox</b> (Profile → Connected inboxes → Remove) immediately deletes the stored
+  credentials for that inbox and revokes the app's stored token for it.</li>
+  <li><b>Deleting a bill</b> from the dashboard removes it and the scanned text kept with it.</li>
+  <li><b>Uninstalling the app</b> permanently erases all stored data — bills, tokens, and saved passwords.
+  Nothing survives elsewhere, because nothing was ever stored elsewhere.</li>
+  <li>You can additionally revoke the app's access to your Google Account at any time at
+  <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>. This takes effect
+  immediately and independently of the app.</li>
+  <li>To ask a question about your data, or to request confirmation of deletion, email
+  <a href="mailto:onebillph@gmail.com">onebillph@gmail.com</a>.</li>
+</ul>
 
 <h2>What we do not do</h2>
 <ul>
