@@ -25,12 +25,12 @@
 <div class="top"><a href="/"><span class="logo">1</span> OneBill PH</a></div>
 
 <h1>Privacy Policy — OneBill PH</h1>
-<div class="date">Last updated: 7 September 2026 · This policy lives at <a href="https://onebillph.com/privacy.html">onebillph.com/privacy.html</a></div>
+<div class="date">Last updated: 9 September 2026 · This policy lives at <a href="https://onebillph.com/privacy.html">onebillph.com/privacy.html</a></div>
 
 <p>OneBill PH helps you keep track of the bills that arrive in your email, and reminds you before they are due. This policy explains exactly what the app touches and where it goes.</p>
 
 <div class="box">
-  <b>The short version.</b> Your email is read <b>on your phone</b>. We do not operate any server, we have no copy of your data, and nothing you see in the app is uploaded anywhere. There are no ads. We never take payments and never move your money. Uninstall the app and everything it knows is gone.
+  <b>The short version.</b> Your email is read <b>on your phone</b>. Your bills, amounts and inbox credentials never leave the device — we have no copy of them and no server that holds them. There are no ads. We never take payments and never move your money. Uninstall the app and everything it knows is gone. The single exception is the optional <b>Ideas &amp; feedback</b> board: if you choose to send a suggestion, that text is transmitted to us. Nothing else is.
 </div>
 
 <h2>Who we are</h2>
@@ -38,19 +38,22 @@
 
 <h2>What the app accesses, and why</h2>
 <ul>
-  <li><b>Gmail (read-only)</b> — with your permission, via Google sign-in. Used only to find bill emails and read the amount, due date and account number. The app never sends, deletes or changes any email.</li>
+  <li><b>Gmail (read-only)</b> — using an <i>app password</i> you generate yourself in your Google Account
+  (Security → 2-Step Verification → App passwords). This is not your Gmail password, it grants read-only mail
+  access to this phone alone, and you can revoke it at any time from that same page. Used only to find bill
+  emails and read the amount, due date and account number. The app never sends, deletes or changes any email.</li>
   <li><b>Yahoo Mail (read-only)</b> — using an <i>app password</i> you generate yourself in your Yahoo account. This is not your Yahoo password, and you can revoke it at any time from Yahoo → Security → App passwords.</li>
   <li><b>Attachments</b> — PDF and image statements are opened on your phone so the amount can be read. Passwords you provide for protected PDF statements are used only to open those files.</li>
   <li><b>Camera</b> (optional) — only when you choose "Snap a paper bill". The photo is read on the phone and not kept afterwards.</li>
   <li><b>Notifications</b> — to remind you 3 days before, and on, a due date, and to tell you when a new bill arrives.</li>
+  <li><b>Ideas &amp; feedback (optional)</b> — only if you open Profile → Ideas &amp; feedback and send a suggestion. See the section below.</li>
 </ul>
 
 <h2>What is stored, and where</h2>
 <p>Everything below is stored <b>only in the app's private storage on your phone</b>:</p>
 <ul>
   <li>The bills the app found: biller, amount, due date, account or reference number, billing period, and the text it read from the email (kept so a wrong amount can be diagnosed).</li>
-  <li>Your Google sign-in token, so you don't have to sign in every time.</li>
-  <li>Your Yahoo app password and any statement (PDF) passwords you save — these are held in Android's <b>encrypted</b> storage.</li>
+  <li>Your Gmail and Yahoo app passwords, and any statement (PDF) passwords you save — all held in Android's <b>encrypted</b> storage.</li>
   <li>Payments you mark as done, and any bills you add by hand.</li>
 </ul>
 <p>Android's automatic cloud backup is switched off for this app (<code>allowBackup="false"</code>), so this data is not copied to your Google Drive backup either.</p>
@@ -59,26 +62,25 @@
 <p>Security procedures are in place to protect the confidentiality, integrity and availability of all
 Google user data and other sensitive data the app handles. Specifically:</p>
 <ul>
-  <li><b>Encryption in transit.</b> Every connection the app makes is encrypted. Gmail is accessed over
-  HTTPS/TLS using the official Google Gmail API; Yahoo Mail is accessed over IMAP with SSL/TLS on port 993.
-  The app refuses unencrypted connections.</li>
-  <li><b>Encryption at rest.</b> Your Google OAuth access and refresh tokens, your Yahoo app password, and
-  any PDF statement passwords you save are stored using <b>Android's encrypted storage</b>
+  <li><b>Encryption in transit.</b> Every connection the app makes is encrypted. Gmail and Yahoo Mail are
+  both accessed over IMAP with SSL/TLS on port 993. The app refuses unencrypted connections.</li>
+  <li><b>Encryption at rest.</b> Your Gmail and Yahoo app passwords, and
+  any PDF statement passwords you save, are stored using <b>Android's encrypted storage</b>
   (Jetpack Security <code>EncryptedSharedPreferences</code>, AES-256-GCM), with the encryption keys held in the
   Android Keystore and, on supported devices, protected by the phone's hardware-backed security module.
   Keys never leave the device and are not extractable by the app or by us.</li>
   <li><b>Device sandbox isolation.</b> All bill data is written to the app's private internal storage, which
   Android isolates from every other app on the phone. It is further protected by the device's own screen lock,
   PIN, pattern or biometric.</li>
-  <li><b>No server, therefore no server-side exposure.</b> OneBill PH operates no backend, no database and no
-  cloud storage. Because Google user data is never transmitted off your device, there is no server that could
-  be breached, no administrator account that could be compromised, and no copy of your email anywhere outside
-  your own phone.</li>
+  <li><b>No server holds your mail or your bills.</b> Because that data is never transmitted off your
+  device, there is no server that could be breached, no administrator account that could be compromised,
+  and no copy of your email anywhere outside your own phone. The optional Ideas board stores only the
+  suggestions people choose to send, and is transmitted over HTTPS.</li>
   <li><b>No cloud backup.</b> Android's automatic backup is disabled for this app
   (<code>allowBackup="false"</code>), so this data is never copied to Google Drive or any other backup service.</li>
-  <li><b>Least privilege.</b> The app requests only the read-only Gmail scope
-  (<code>gmail.readonly</code>) — the narrowest permission that allows a bill to be found and read.
-  It is technically incapable of sending, modifying, labelling or deleting any message.</li>
+  <li><b>Least privilege.</b> The app connects to your mailbox read-only over IMAP and never requests
+  permission to send, modify, label or delete mail. It uses no Google OAuth scopes at all, and holds no
+  token that could grant access to anything beyond reading mail on this device.</li>
   <li><b>No human access.</b> No employee, contractor or third party can read your email or bill data,
   because that data never reaches any system we control.</li>
   <li><b>No AI/ML training.</b> Google user data is never used to develop, improve or train any generalised
@@ -90,39 +92,59 @@ Google user data and other sensitive data the app handles. Specifically:</p>
   <li>Bill data is retained on your device only for as long as you keep the app installed, so that the
   dashboard and reminders keep working.</li>
   <li><b>Disconnecting an inbox</b> (Profile → Connected inboxes → Remove) immediately deletes the stored
-  credentials for that inbox and revokes the app's stored token for it.</li>
+  app password for that inbox from this device.</li>
   <li><b>Deleting a bill</b> from the dashboard removes it and the scanned text kept with it.</li>
-  <li><b>Uninstalling the app</b> permanently erases all stored data — bills, tokens, and saved passwords.
+  <li><b>Uninstalling the app</b> permanently erases all stored data — bills and saved app passwords.
   Nothing survives elsewhere, because nothing was ever stored elsewhere.</li>
-  <li>You can additionally revoke the app's access to your Google Account at any time at
-  <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>. This takes effect
-  immediately and independently of the app.</li>
+  <li>You can additionally revoke access at any time from your provider: Google at
+  <a href="https://myaccount.google.com/apppasswords">myaccount.google.com/apppasswords</a>, Yahoo at
+  Account security → App passwords. Deleting the app password there cuts off access immediately and
+  independently of the app.</li>
   <li>To ask a question about your data, or to request confirmation of deletion, email
   <a href="mailto:onebillph@gmail.com">onebillph@gmail.com</a>.</li>
 </ul>
 
+<h2>Ideas &amp; feedback (optional)</h2>
+<p>Profile → <b>Ideas &amp; feedback</b> lets you send a suggestion and vote on suggestions other
+people have sent, so the most-wanted features get built first. This is the only feature that
+transmits anything off your device, and it only runs when you choose to use it.</p>
+<ul>
+  <li><b>What is sent:</b> the text you type, the app version, and a random identifier generated
+  on your device (for example <code>d-k3f9x2…</code>) so a vote can be counted once. That is all.</li>
+  <li><b>What is never sent:</b> your name, your email address, your inbox credentials, and
+  anything at all about your bills — no biller, no amount, no due date, no account number.</li>
+  <li>The random identifier is not linked to you, your Google or Yahoo account, or your device's
+  advertising ID, and it is discarded if you uninstall the app.</li>
+  <li>Suggestions are visible to other users of the board, so please don't type anything personal
+  into it. The app warns you of this on the screen itself.</li>
+  <li>Suggestions are used only to decide what to build next. They are not sold, shared or used
+  for advertising, and we may delete or edit off-topic submissions.</li>
+  <li>To have a suggestion removed, email <a href="mailto:onebillph@gmail.com">onebillph@gmail.com</a>.</li>
+</ul>
+
 <h2>What we do not do</h2>
 <ul>
-  <li>We do not run a server, and you do not create an account with us.</li>
-  <li>We do not upload, collect, receive or store your email, your bills, or your passwords.</li>
+  <li>You do not create an account with us, and we hold no server-side copy of your bills.</li>
+  <li>We do not upload, collect, receive or store your email, your bills, or your passwords —
+  the only thing we ever receive is a suggestion you deliberately send from the Ideas board.</li>
   <li>We do not sell or share your data with anyone. There are no advertisers.</li>
   <li>We do not track your behaviour in the app.</li>
   <li>We do not process payments. When you choose to pay, the app simply opens GCash, Maya or your bank app — you complete the payment there, as you normally would.</li>
 </ul>
 
 <h2>Who else is involved</h2>
-<p>The app talks directly to the mail providers you connect — <b>Google (Gmail API)</b> and <b>Yahoo (IMAP)</b> — using your own credentials. Their handling of your data is governed by their own privacy policies. No other third party receives anything.</p>
+<p>The app talks directly to the mail providers you connect — <b>Google (Gmail)</b> and <b>Yahoo</b>, both over IMAP — using the app password you generated. Their handling of your data is governed by their own privacy policies. No other third party receives anything.</p>
 
 <h2>Your control</h2>
 <ul>
   <li><b>Disconnect an inbox:</b> Profile → Connected inboxes → Remove.</li>
-  <li><b>Revoke Google access entirely:</b> <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a> → OneBill PH → Remove access.</li>
+  <li><b>Revoke Google access entirely:</b> <a href="https://myaccount.google.com/apppasswords">myaccount.google.com/apppasswords</a> → delete the OneBill app password.</li>
   <li><b>Revoke Yahoo access:</b> Yahoo → Account security → App passwords → delete the OneBill password.</li>
   <li><b>Delete everything:</b> uninstall the app. All stored data is removed with it.</li>
 </ul>
 
 <h2>Limited Use disclosure</h2>
-<p>OneBill PH's use of information received from Google APIs adheres to the
+<p>OneBill PH does not use Google OAuth or the Gmail API; mail is read over IMAP with a user-generated app password. Where Google user data is handled, its use adheres to the
 <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements.
 Gmail data is used solely to provide the bill-tracking features described above, is processed on the user's device, is not transferred to any server, is not used for advertising, and is not sold or shared. No human reads your email data.</p>
 
