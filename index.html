@@ -85,7 +85,7 @@
     <h2>How it works</h2>
     <p class="sub">Three steps, about two minutes, then it runs by itself.</p>
     <div class="grid">
-      <div class="card"><div class="n">1</div><h3>Connect your inbox</h3><p>Sign in with Google for Gmail, or use a Yahoo app password. You can connect several inboxes. OneBill PH asks for read-only access — it can never send, delete or change an email.</p></div>
+      <div class="card"><div class="n">1</div><h3>Connect your inbox</h3><p>Create a read-only key (an "app password") in your own Gmail or Yahoo account — a guided one-time setup, about two minutes, that never repeats. It is not your real password, it only reads mail on your phone, and you can revoke it from your account at any time.</p></div>
       <div class="card"><div class="n">2</div><h3>Your bills appear</h3><p>The app looks only at emails from billers you'd expect — utilities, telcos, banks, your condo — and reads the amount, due date and account number, including from PDF statements and images. Promos and receipts are skipped.</p></div>
       <div class="card"><div class="n">3</div><h3>Get reminded, then pay your way</h3><p>A reminder arrives 3 days before and on the due date, and when a new bill lands. When you're ready to pay, the app opens GCash, Maya or your bank app — you pay there as usual. OneBill PH never handles money.</p></div>
     </div>
@@ -97,11 +97,11 @@
     <div class="promise">
       <b>Your email is read on your phone, and only there.</b> OneBill PH has no server. Nothing you see in the app is uploaded, copied or stored anywhere else.
       <ul>
-        <li>The app requests Gmail <b>read-only</b> access and uses it for one purpose: finding bill emails and reading the amount, due date and account number.</li>
+        <li>The app connects <b>read-only</b> and uses that access for one purpose: finding bill emails and reading the amount, due date and account number. It cannot send, delete or change mail.</li>
         <li>It searches only for messages from known billers (and any billers you add yourself). Your other mail is not scanned.</li>
-        <li>Statements you open, passwords for protected PDFs, and your sign-in token are kept in Android's encrypted storage on the device. Cloud backup is switched off.</li>
+        <li>Your app passwords, and any passwords for protected PDF statements, are kept in Android's encrypted storage on the device. Cloud backup is switched off.</li>
         <li>No ads, no tracking, no selling or sharing of data. No human ever reads your email.</li>
-        <li>Disconnect any time in the app, or from <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>. Uninstalling erases everything.</li>
+        <li>Disconnect any time in the app, or delete the key at <a href="https://myaccount.google.com/apppasswords">myaccount.google.com/apppasswords</a>. Uninstalling erases everything.</li>
       </ul>
       <p style="margin:16px 0 0">Full details: <a href="/privacy.html"><b>Privacy Policy</b></a>. OneBill PH complies with the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including its Limited Use requirements.</p>
     </div>
@@ -110,10 +110,10 @@
   <section class="faq">
     <h2>Common questions</h2>
     <details><summary>Does OneBill PH pay my bills?</summary><p>No. It tracks and reminds. When you tap Pay, it hands you off to GCash, Maya or your bank app and you complete the payment there. It never sees your card or wallet.</p></details>
-    <details><summary>Which email providers work?</summary><p>Gmail (via Google sign-in) and Yahoo Mail (via an app password you create in your Yahoo account). Bills that land elsewhere can be forwarded to a connected inbox, snapped from paper with the camera, or added by hand.</p></details>
+    <details><summary>Which email providers work?</summary><p>Gmail and Yahoo Mail, both connected with an app password you generate yourself. Bills that land elsewhere can be forwarded to a connected inbox — forwarded bills are detected automatically — snapped from paper with the camera, or added by hand.</p></details>
     <details><summary>My condo or a small biller isn't listed.</summary><p>Add it yourself: paste the sender's email address and a phrase from the bill's subject line. The app then picks up those bills like any other.</p></details>
     <details><summary>Where is my data stored?</summary><p>Only in the app's private storage on your phone. There is no OneBill PH account and no cloud copy. Uninstall the app and it's gone.</p></details>
-    <details><summary>How much does it cost?</summary><p>OneBill PH is free to download and use. Optional extras may be offered later; the core bill tracking stays free.</p></details>
+    <details><summary>How much does it cost?</summary><p>OneBill PH is free — every feature, no limits, nothing to buy. If paid extras are ever added, the core bill tracking stays free.</p></details>
   </section>
 
 </main>
